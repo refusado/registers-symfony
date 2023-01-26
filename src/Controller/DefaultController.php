@@ -8,21 +8,18 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController
 { 
-  /**
-   * @Route("/", methods={"GET", "POST"})
-   */
-  public static function index(Request $request): Response
-  {   
-    $data = json_encode([
-      "name" => $request->get('name'),
-      "ip" => $request->getClientIp()
-    ]);
+  // public static function index(Request $request): Response
+  // {   
+  //   $data = json_encode([
+  //     "name" => $request->get('name'),
+  //     "ip" => $request->getClientIp()
+  //   ]);
 
-    $res = new Response();
-    $res->setContent($data);
-    $res->setStatusCode(200);
-    $res->headers->set('Content-Type', 'application/json');
+  //   $res = new Response();
+  //   $res->setContent($data);
+  //   $res->setStatusCode(200);
+  //   $res->headers->set('Content-Type', 'application/json');
 
-    return $res;
-  }
+  //   return $res;
+  // }
 }
