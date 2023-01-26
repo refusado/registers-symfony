@@ -25,6 +25,18 @@ class UserController extends AbstractController
    */
   public function saveUser(Request $request): Response
   {
-    return new Response('Retornar página de usuário salvo');
+    $data = [
+      "name" => $request->get('name'),
+      "email" => $request->get('email'),
+      "password" => $request->get('password')
+    ];
+
+    $success = true;
+
+    if ($success) {
+      return $this->render("user/success.html.twig", $data);
+    }
+
+    return $this->render("user/error.html.twig", $data);
   }
 }

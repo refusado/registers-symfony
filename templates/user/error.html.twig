@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Register error  {% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('style.css') }}">
+{% endblock %}
+
+{% block header %}
+  <header>
+    <img class="logo" src="{{ asset('img/logo.jpg') }}" alt="">
+  </header>
+{% endblock %}
+
+{# Tela de erro  #}
+{% block body %}
+  <p class="error">There was a error when trying to register {{ name }}.</p>
+{% endblock %}

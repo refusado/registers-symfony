@@ -13,3 +13,15 @@ header {
 .logo {
   height: 100%;
 }
+
+p {
+  font-size: 2rem;
+}
+
+.success {
+  color: green;
+}
+
+.error {
+  color: red;
+}

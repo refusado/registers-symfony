@@ -2,12 +2,34 @@
 
 {% block title %}Register users{% endblock %}
 
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('style.css') }}">
+{% endblock %}
+
 {% block header %}
   <header>
     <img class="logo" src="{{ asset('img/logo.jpg') }}" alt="">
   </header>
 {% endblock %}
 
-{% block stylesheets %}
-  <link rel="stylesheet" href="{{ asset('style.css') }}">
+{# formulário de cadastro #}
+{% block body %}
+  <form action="{{ url('web_user_register') }}" method="post">
+    <div class="field">
+      <label for="name">Nome</label>
+      <input type="text" name="name" id="name">
+    </div>
+    <div class="field">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email">
+    </div>
+    <div class="field">
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password">
+    </div>
+
+    <div class="field">
+      <input type="submit" value="Register">
+    </div>
+  </form>
 {% endblock %}
