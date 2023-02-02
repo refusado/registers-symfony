@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,18 +26,27 @@ class UserController extends AbstractController
    */
   public function saveUser(Request $request): Response
   {
-    $data = [
-      "name" => $request->get('name'),
-      "email" => $request->get('email'),
-      "password" => $request->get('password')
-    ];
+    $data = $request->request->all();
 
-    $success = true;
+    $user = new User;
+    $user->setName($data["name"]);
+    $user->setEmail($data["email"]);
+    $user->setPassword($data["password"]);
 
-    if ($success) {
-      return $this->render("user/success.html.twig", $data);
+    $doctrine = $this->getDoctrine()->getManager();
+    $doctrine->persist($user);
+    $doctrine->flush();
+
+    // dump($user);
+
+    if ($doctrine->contains($user)) {
+      return $this->render("user/success.html.twig", [
+        "name" => $data['name'],
+      ]);
     }
 
-    return $this->render("user/error.html.twig", $data);
+    return $this->render("user/error.html.twig", [
+      "name" => $data['name'],
+    ]);
   }
 }

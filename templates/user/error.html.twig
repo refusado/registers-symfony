@@ -15,4 +15,5 @@
 {# Tela de erro  #}
 {% block body %}
   <p class="error">There was a error when trying to register {{ name }}.</p>
+  <a href="{{ url('web_user_list')}}">Back to home</a>
 {% endblock %}
