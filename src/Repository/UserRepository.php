@@ -39,6 +39,15 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+    public function getAll()
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id > :val')
+            ->setParameter('val', 3)
+            ->getQuery()
+            ->getArrayResult();
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
