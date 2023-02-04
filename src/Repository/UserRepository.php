@@ -41,9 +41,7 @@ class UserRepository extends ServiceEntityRepository
 
     public function getAll()
     {
-        return $this->createQueryBuilder('u')
-            ->andWhere('u.id > :val')
-            ->setParameter('val', 3)
+        return $this->createQueryBuilder('user')
             ->getQuery()
             ->getArrayResult();
     }

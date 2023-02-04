@@ -21,9 +21,9 @@ class UserController extends AbstractController
   {
     $doctrine = $this->getDoctrine()->getRepository(User::class);
 
-    dump($doctrine->getAll());
+    $result = $doctrine->getAll();
 
-    return new JsonResponse("Retornar usuários do banco de dados");
+    return new JsonResponse($result);
   }
 
   /**
@@ -31,6 +31,25 @@ class UserController extends AbstractController
    */
   public function saveUser(Request $request): JsonResponse
   {
-    return new JsonResponse("Salvar usuário no banco de dados");
+    $data = $request->query->all();
+
+    dump($data);
+
+    $user = new User;
+    $user->setName($data["name"]);
+    $user->setEmail($data["email"]);
+    $user->setPassword($data["password"]);
+
+    $doctrine = $this->getDoctrine()->getManager();
+    $doctrine->persist($user);
+    $doctrine->flush();
+
+    // dump($user);
+
+    if ($doctrine->contains($user)) {
+      return new JsonResponse("message: $data[name] registered");
+    }
+
+    return new JsonResponse('message: "error"', 400);
   }
 }
